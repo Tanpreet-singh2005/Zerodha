@@ -15,10 +15,6 @@ const Home = () => {
 
   useEffect(() => {
     const verifyCookie = async () => {
-      if (!cookies.token) {
-        window.location.href = `${FRONTEND_URL}/login`;
-        return;
-      }
       try {
         const { data } = await axios.post(
           `${API_URL}/`,
@@ -42,7 +38,7 @@ const Home = () => {
       }
     };
     verifyCookie();
-  }, [cookies, removeCookie]);
+  }, [removeCookie]);
 
   const handleLogout = () => {
     removeCookie("token", { path: '/' });
